@@ -11,7 +11,14 @@ const CACHE_TTL = 300;
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		if (request.method === 'OPTIONS') {
-			return new Response(null, { headers: CORS_HEADERS });
+			return new Response(null, {
+				status: 204,
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+					'Access-Control-Allow-Methods': 'GET, OPTIONS',
+					'Access-Control-Allow-Headers': '*',
+				},
+			});
 		}
 
 		try {
